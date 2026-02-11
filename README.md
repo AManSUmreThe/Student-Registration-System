@@ -43,7 +43,7 @@ This command will:
 - **-o ./style.css**: Output compiled CSS file
 - **--watch**: Automatically recompile when changes are detected
 
-### 4.  How to run the Project
+## How to run the Project
 
 Open `index.html` in your web browser:
 - Double-click the `index.html` file, or
