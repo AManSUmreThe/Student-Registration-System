@@ -2,17 +2,54 @@
 
 A simple student registration system where you can register student details (name, student ID, class, roll number), and edit or delete records. Data is stored in the browser using localStorage so it persists after refresh.
 
-## How to run
+## Prerequisites
 
-1. **Option A – Use the pre-built CSS**  
-   Open `index.html` in your browser (double-click or drag into a browser window).  
-   If you have not run the build step, the page may lack styles; then use Option B.
+Before running this project, ensure you have the following installed:
 
-2. **Option B – Build CSS then open**  
-   - Install dependencies: `npm install`  
-   - Build the stylesheet: `npm run build:css`  
-   - Open `index.html` in your browser.  
-   For development with live CSS updates: `npm run dev` (then refresh the page after changes to `input.css` or HTML).
+- **Node.js** (version 14 or higher) - [Download here](https://nodejs.org/)
+- **npm** (comes with Node.js)
+- **TailwindCSS** (Optional)
+
+
+## Installation & Setup (Optional)
+
+Follow these steps to set up and run the project:
+
+### 1. Clone or Download the Project
+
+```bash
+cd Student-Registration-System
+```
+
+### 2. Install Dependencies
+
+Install the Tailwind CSS CLI and other dependencies:
+
+```bash
+npm install 
+npm install tailwindcss @tailwindcss/cli
+```
+
+### 3. Run Tailwind CSS Watcher
+
+To compile CSS files and watch for changes, run:
+
+```bash
+npx @tailwindcss/cli -i ./input.css -o ./style.css --watch
+```
+
+This command will:
+- **-i ./input.css**: Input CSS file containing Tailwind directives
+- **-o ./style.css**: Output compiled CSS file
+- **--watch**: Automatically recompile when changes are detected
+
+### 4.  How to run the Project
+
+Open `index.html` in your web browser:
+- Double-click the `index.html` file, or
+- Use a live server extension(recommended):
+
+Then visit `http://localhost:XXXX` in your browser.
 
 ## Features
 
@@ -33,10 +70,6 @@ A simple student registration system where you can register student details (nam
 - `package.json` – Scripts: `build:css`, `dev`
 - `app.js` – Add, edit, delete, validation, localStorage, scrollbar logic
 - `README.md` – This file
-
-## Submission note
-
-If you submit as a zip: run `npm run build:css`, then **remove the `node_modules` folder** before zipping. Include `index.html`, `styles.css`, `app.js`, and `README.md` (and optionally `package.json`, `tailwind.config.js`, `input.css` for rebuild).
 
 ## GitHub
 
