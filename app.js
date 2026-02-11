@@ -21,14 +21,14 @@ const submitBtn = document.getElementById('submit-btn');
 const cancelBtn = document.getElementById('cancel-btn');
 const nameInput = document.getElementById('student-name');
 const idInput = document.getElementById('student-id');
-const classInput = document.getElementById('student-class');
-const rollNoInput = document.getElementById('roll-no');
+const emailInput = document.getElementById('email-id');
+const contactInput = document.getElementById('contact-number');
 
 const errorEls = {
   name: document.getElementById('name-error'),
   id: document.getElementById('id-error'),
-  class: document.getElementById('class-error'),
-  rollNo: document.getElementById('rollno-error'),
+  email: document.getElementById('email-error'),
+  contact: document.getElementById('contact-error'),
 };
 
 /**
@@ -53,11 +53,7 @@ function saveAndRender() {
 }
 
 /**
- * Validation rules:
- * Student name: letters and spaces only
- * Student ID: numbers only
- * Class: non-empty, alphanumeric allowed
- * Roll No.: numbers only, at least one digit
+ * Validation: Student name (letters/spaces), Student ID (numbers), Email (valid format), Contact (digits, min 10)
  */
 function validateName(value) {
   const trimmed = (value || '').trim();
@@ -73,16 +69,19 @@ function validateStudentId(value) {
   return { valid: true };
 }
 
-function validateClass(value) {
+function validateEmail(value) {
   const trimmed = (value || '').trim();
-  if (!trimmed) return { valid: false, message: 'Class is required.' };
+  if (!trimmed) return { valid: false, message: 'Email is required.' };
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(trimmed)) return { valid: false, message: 'Enter a valid email address.' };
   return { valid: true };
 }
 
-function validateRollNo(value) {
+function validateContact(value) {
   const trimmed = (value || '').trim();
-  if (!trimmed) return { valid: false, message: 'Roll No. is required.' };
-  if (!/^\d+$/.test(trimmed)) return { valid: false, message: 'Roll No. must contain only numbers.' };
+  if (!trimmed) return { valid: false, message: 'Contact number is required.' };
+  if (!/^\d+$/.test(trimmed)) return { valid: false, message: 'Contact must contain only numbers.' };
+  if (trimmed.length < 10) return { valid: false, message: 'Contact must be at least 10 digits.' };
   return { valid: true };
 }
 
@@ -102,22 +101,17 @@ function clearAllErrors() {
  * Validate all form fields. Returns true if valid; otherwise shows errors and returns false.
  */
 function validateForm() {
-  const name = nameInput.value;
-  const id = idInput.value;
-  const cls = classInput.value;
-  const rollNo = rollNoInput.value;
-
-  const rName = validateName(name);
-  const rId = validateStudentId(id);
-  const rClass = validateClass(cls);
-  const rRollNo = validateRollNo(rollNo);
+  const rName = validateName(nameInput.value);
+  const rId = validateStudentId(idInput.value);
+  const rEmail = validateEmail(emailInput.value);
+  const rContact = validateContact(contactInput.value);
 
   showError('name', rName.valid ? '' : rName.message);
   showError('id', rId.valid ? '' : rId.message);
-  showError('class', rClass.valid ? '' : rClass.message);
-  showError('rollNo', rRollNo.valid ? '' : rRollNo.message);
+  showError('email', rEmail.valid ? '' : rEmail.message);
+  showError('contact', rContact.valid ? '' : rContact.message);
 
-  return rName.valid && rId.valid && rClass.valid && rRollNo.valid;
+  return rName.valid && rId.valid && rEmail.valid && rContact.valid;
 }
 
 /**
@@ -127,8 +121,8 @@ function hasEmptyFields() {
   return (
     !nameInput.value.trim() ||
     !idInput.value.trim() ||
-    !classInput.value.trim() ||
-    !rollNoInput.value.trim()
+    !emailInput.value.trim() ||
+    !contactInput.value.trim()
   );
 }
 
@@ -141,8 +135,8 @@ function buildRow(student, index) {
   tr.innerHTML = `
     <td class="py-2 px-4 border border-gray-300">${escapeHtml(student.name)}</td>
     <td class="py-2 px-4 border border-gray-300">${escapeHtml(student.studentId)}</td>
-    <td class="py-2 px-4 border border-gray-300">${escapeHtml(student.class)}</td>
-    <td class="py-2 px-4 border border-gray-300">${escapeHtml(student.rollNo)}</td>
+    <td class="py-2 px-4 border border-gray-300">${escapeHtml(student.email ?? '')}</td>
+    <td class="py-2 px-4 border border-gray-300">${escapeHtml(student.contact ?? '')}</td>
     <td class="py-2 px-4 border border-gray-300">
       <button type="button" class="edit-btn rounded-full px-3 py-1 text-sm bg-gray-700 text-white hover:bg-gray-800 mr-1" data-index="${index}">Edit</button>
       <button type="button" class="delete-btn rounded-full px-3 py-1 text-sm bg-gray-700 text-white hover:bg-gray-800" data-index="${index}">Delete</button>
@@ -194,8 +188,8 @@ function startEdit(index) {
   const s = students[index];
   nameInput.value = s.name;
   idInput.value = s.studentId;
-  classInput.value = s.class;
-  rollNoInput.value = s.rollNo;
+  emailInput.value = s.email || '';
+  contactInput.value = s.contact || '';
   editingIndex = index;
   submitBtn.textContent = 'Update';
   cancelBtn.classList.remove('hidden');
@@ -224,8 +218,8 @@ form.addEventListener('submit', (e) => {
   const record = {
     name: nameInput.value.trim(),
     studentId: idInput.value.trim(),
-    class: classInput.value.trim(),
-    rollNo: rollNoInput.value.trim(),
+    email: emailInput.value.trim(),
+    contact: contactInput.value.trim(),
   };
 
   if (editingIndex !== null) {

@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Task 5: Custom gradient matching reference image - left warm (yellow/orange→pink), right cool (blue→green) */
+/* - left warm (yellow/orange→pink), right cool (blue→green) */
 @layer components {
   .bg-page-gradient {
     background: linear-gradient(
@@ -13,7 +13,6 @@
       #d1fae5 100%
     );
   }
-  /* Smoother two-column gradient: blend at center */
   .bg-page-gradient-split {
     background: linear-gradient(
       to right,

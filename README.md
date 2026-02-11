@@ -1,6 +1,6 @@
 # Student Registration System
 
-A simple student registration system where you can register student details (name, student ID, class, roll number), and edit or delete records. Data is stored in the browser using localStorage so it persists after refresh.
+A simple student registration system where you can register student details (name, student ID, email ID, contact number), and edit or delete records. Data is stored in the browser using localStorage so it persists after refresh.
 
 ## Prerequisites
 
@@ -53,10 +53,10 @@ Then visit `http://localhost:XXXX` in your browser.
 
 ## Features
 
-- **Register students** – Add records with Student Name, Student ID, Class, and Roll No.
+- **Register students** – Add records with Student Name, Student ID, Email ID, and Contact number.
 - **Edit records** – Click “Edit” on a row to load it into the form, then click “Update” to save.
 - **Delete records** – Click “Delete” on a row to remove it.
-- **Validation** – Student name (letters and spaces only), Student ID (numbers only), Class (required), Roll No. (numbers only). Empty records cannot be added.
+- **Validation** – Student name (letters and spaces only), Student ID (numbers only), valid email, Contact number (digits only, at least 10). Empty records cannot be added.
 - **Persistence** – Data is saved in localStorage and remains after page refresh.
 - **Responsive layout** – Works on mobile (≤640px), tablet (641px–1024px), and desktop (≥1025px). Form and table stack on small screens and sit side-by-side on large screens.
 - **Dynamic scrollbar** – The records table gets a vertical scrollbar (via JavaScript) when content exceeds a set height.
