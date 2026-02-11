@@ -1,0 +1,12 @@
+{
+  "name": "student-registration-system",
+  "version": "1.0.0",
+  "description": "Student Registration System - register, edit, and delete student records",
+  "scripts": {
+    "build:css": "tailwindcss -i input.css -o styles.css",
+    "dev": "tailwindcss -i input.css -o styles.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}

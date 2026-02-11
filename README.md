@@ -40,4 +40,4 @@ If you submit as a zip: run `npm run build:css`, then **remove the `node_modules
 
 ## GitHub
 
-Repository: [Add your GitHub repository link here]
+Repository: [\[GitHub repository link here\]](https://github.com/AManSUmreThe/Student-Registration-System)

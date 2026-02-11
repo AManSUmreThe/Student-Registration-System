@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Task 1: Basic structure, title, meta tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Student Registration System - Register, edit, and delete student records with name, ID, class, and roll number." />
+  <title>Student Registration System</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-page-gradient-split min-h-screen font-sans text-gray-800 antialiased">
+  <!-- Task 2: Header - catchy title and brief description -->
+  <header class="w-full py-6 text-center">
+    <h1 class="text-2xl md:text-3xl font-bold text-gray-800">Student Registration System</h1>
+    <p class="mt-2 text-sm md:text-base text-gray-600 max-w-xl mx-auto px-4">
+      Register student details, and edit or delete records. All data is saved locally.
+    </p>
+  </header>
+
+  <!-- Task 4 & 5: Main - two columns on desktop (lg), stacked on mobile/tablet; responsive -->
+  <main class="w-full max-w-7xl mx-auto px-4 pb-8 lg:grid lg:grid-cols-[1fr_1.5fr] lg:gap-8 lg:items-start">
+    <!-- Task 3: Left column - registration form (Name, ID, Class, Roll No.) -->
+    <section class="mb-8 lg:mb-0" aria-label="Registration form">
+      <form id="student-form" class="bg-white/70 backdrop-blur rounded-lg border border-gray-200 shadow-sm p-6 space-y-4">
+        <div class="flex flex-wrap items-center gap-2">
+          <label for="student-name" class="w-28 text-sm font-medium text-gray-700 shrink-0">Student Name:</label>
+          <input type="text" id="student-name" name="name" placeholder="Enter name" required
+            class="flex-1 min-w-[160px] px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-800 focus:ring-2 focus:ring-gray-400 focus:border-gray-400" />
+        </div>
+        <p id="name-error" class="text-red-600 text-sm hidden ml-[7.5rem] lg:ml-32"></p>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <label for="student-id" class="w-28 text-sm font-medium text-gray-700 shrink-0">Student ID:</label>
+          <input type="text" id="student-id" name="studentId" placeholder="Enter ID" required
+            class="flex-1 min-w-[160px] px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-800 focus:ring-2 focus:ring-gray-400 focus:border-gray-400" />
+        </div>
+        <p id="id-error" class="text-red-600 text-sm hidden ml-[7.5rem] lg:ml-32"></p>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <label for="student-class" class="w-28 text-sm font-medium text-gray-700 shrink-0">Class :</label>
+          <input type="text" id="student-class" name="class" placeholder="Enter class" required
+            class="flex-1 min-w-[160px] px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-800 focus:ring-2 focus:ring-gray-400 focus:border-gray-400" />
+        </div>
+        <p id="class-error" class="text-red-600 text-sm hidden ml-[7.5rem] lg:ml-32"></p>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <label for="roll-no" class="w-28 text-sm font-medium text-gray-700 shrink-0">Roll No. :</label>
+          <input type="text" id="roll-no" name="rollNo" placeholder="Enter roll no" required
+            class="flex-1 min-w-[160px] px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-800 focus:ring-2 focus:ring-gray-400 focus:border-gray-400" />
+        </div>
+        <p id="rollno-error" class="text-red-600 text-sm hidden ml-[7.5rem] lg:ml-32"></p>
+
+        <div class="flex flex-wrap gap-2 pt-2">
+          <button type="submit" id="submit-btn" class="px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-800 focus:ring-2 focus:ring-gray-500 focus:ring-offset-1">
+            Add
+          </button>
+          <button type="button" id="cancel-btn" class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 focus:ring-2 focus:ring-gray-400 hidden">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Task 4: Right column - display section: table (Name, ID, Class, Roll NO., Actions) -->
+    <section id="records-section" class="overflow-hidden" aria-label="Registered student records">
+      <div id="table-wrapper" class="bg-white/60 backdrop-blur rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+        <!-- table-scroll-container: JS applies max-height and overflow-y for dynamic scrollbar -->
+        <div class="overflow-x-auto" id="table-scroll-container">
+          <table class="w-full border-collapse table-auto">
+            <thead>
+              <tr class="border-b border-gray-300 bg-white/80">
+                <th class="text-left py-3 px-4 border border-gray-300 font-semibold text-gray-800">Name</th>
+                <th class="text-left py-3 px-4 border border-gray-300 font-semibold text-gray-800">ID</th>
+                <th class="text-left py-3 px-4 border border-gray-300 font-semibold text-gray-800">Class</th>
+                <th class="text-left py-3 px-4 border border-gray-300 font-semibold text-gray-800">Roll NO.</th>
+                <th class="text-left py-3 px-4 border border-gray-300 font-semibold text-gray-800">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="records-tbody">
+              <!-- Rows inserted by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p id="no-records" class="mt-2 text-sm text-gray-600 text-center hidden">No records yet. Add a student above.</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
